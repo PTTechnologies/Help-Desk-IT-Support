@@ -1,0 +1,57 @@
+Troubleshooting a Windows Login Issue in IT Support
+
+Introduction
+One of the most common IT Help Desk issues is when users are unable to log in to their Windows workstations. This problem can stem from incorrect credentials, an account lockout, expired passwords, or Active Directory issues. In this post, we will walk through the troubleshooting process step-by-step.
+
+Scenario
+A user submits a Jira ticket reporting that they cannot log in to their Windows computer. Despite entering the correct password, they receive an "Incorrect Password" error.
+Jira Ticket Details
+Issue Type: Incident
+Priority: Medium
+Status: Open
+Reporter: [User’s Name]
+Assignee: IT Help Desk Tier 1
+Affected User: [User’s Name]
+Affected System: Windows 10/11 Workstation
+Summary: User Unable to Login to Windows
+Attachments: Screenshot of the error message (if provided by the user)
+
+Step-by-Step Troubleshooting
+Step 1: Verify User Credentials
+Ask the user to carefully re-enter their username and password.
+Confirm that Caps Lock and Num Lock are not enabled.
+Check if the user is entering the correct domain (if applicable).
+Attempt to log in using another device to rule out local issues.
+
+Step 2: Confirm Account Status in Active Directory
+Open Active Directory Users and Computers (ADUC).
+Search for the user’s account and check:
+If the account is locked out (Event ID 4740 in AD logs).
+If the account is disabled.
+If the password has expired.
+If the account is locked, unlock it and inform the user.
+
+Step 3: Reset the User’s Password
+If the user forgot their password, reset it in ADUC:
+Right-click the user account → Select Reset Password.
+Set a temporary password and check “User must change password at next logon.”
+Ask the user to log in with the new credentials.
+
+Step 4: Check Group Policies & Logon Scripts
+Ensure the user is in the correct security groups.
+Run gpupdate /force on the client machine to refresh policies.
+
+Step 5: Review Windows Event Logs
+If the issue persists, check the workstation’s logs:
+Event Viewer → Windows Logs → Security
+Look for failed login attempts (Event ID 4625).
+
+Step 6: Test with Another Account
+Log in with an admin account on the same machine.
+If the admin account works, create a new user profile for the affected user.
+
+Step 7: Escalate if Unresolved
+If all steps fail, escalate the issue to Tier 2 IT Support for further investigation.
+
+Conclusion
+By following these troubleshooting steps, IT Support can quickly identify and resolve Windows login issues. This structured approach ensures minimal downtime for users and helps maintain system security.
